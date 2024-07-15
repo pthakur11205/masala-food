@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "308760362052",
+    "project_id": "masala-8df83",
+    "storage_bucket": "masala-8df83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308760362052:android:8d0917a37aa576fec91011",
+        "android_client_info": {
+          "package_name": "com.pthakur11205.masalafood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7ZbWq2tR6Bi8H_SiQyu40wvSrumoplKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
