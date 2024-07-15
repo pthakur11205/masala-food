@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, ImageBackground } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 
 const sampleData = [
@@ -26,17 +26,22 @@ export default function SwipeScreen() {
       <Swiper
         cards={recipes}
         renderCard={(card) => (
-          <View style={styles.card}>
-            <Image source={{ uri: card.image }} style={styles.image} />
-            <Text style={styles.text}>{card.name}</Text>
+          <ImageBackground 
+          source={require('../../assets/images/bakedchicken.png')}            style={styles.card}
+            imageStyle={styles.cardBackground}
+          >
+         <Text style={styles.text}>{card.name}</Text>
             <Text style={styles.text}>Prep Time: {card.prepTime}</Text>
-          </View>
+          </ImageBackground>
         )}
         onSwipedRight={onSwipedRight}
         onSwipedLeft={onSwipedLeft}
-        backgroundColor={'#f5f5f5'}
+        backgroundColor={'#E8AC3B'} //Orange
         cardIndex={0}
         stackSize={3}
+        verticalSwipe={false}
+        disableTopSwipe={true}
+        disableBottomSwipe={true}
       />
     </View>
   );
@@ -45,26 +50,22 @@ export default function SwipeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FA4643', //reddish
     justifyContent: 'center', // Center vertically
     alignItems: 'center', // Center horizontally
   },
   card: {
     flex: 1,
-    width: 300, // Adjust width as needed
-    height: 400, // Adjust height as needed
+    width: 300,
+    height: 400,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+  cardBackground: {
     borderRadius: 8,
     borderWidth: 2,
     borderColor: '#E8E8E8',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 10,
-  },
-  image: {
-    width: 150,
-    height: 150,
-    borderRadius: 8,
   },
   text: {
     marginTop: 10,
