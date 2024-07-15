@@ -1,6 +1,6 @@
-import React from 'react';
-import SwipeScreen from './screens/SwipeScreen';
+// index.tsx
+import 'react-native-gesture-handler';
+import { registerRootComponent } from 'expo';
+import App from './App';
 
-export default function Index() {
-  return <SwipeScreen />;
-}
+registerRootComponent(App);

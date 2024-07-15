@@ -1,6 +1,22 @@
+// SwipeScreen.tsx
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Button } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+
+type RootStackParamList = {
+  AddRecipe: undefined;
+  SwipeScreen: undefined;
+};
+
+type SwipeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SwipeScreen'>;
+type SwipeScreenRouteProp = RouteProp<RootStackParamList, 'SwipeScreen'>;
+
+type Props = {
+  navigation: SwipeScreenNavigationProp;
+  route: SwipeScreenRouteProp;
+};
 
 const sampleData = [
   { name: 'Oven-baked Chicken', prepTime: '20 min', image: 'https://via.placeholder.com/150' },
@@ -8,7 +24,7 @@ const sampleData = [
   // Add more sample data here
 ];
 
-export default function SwipeScreen() {
+const SwipeScreen: React.FC<Props> = ({ navigation }) => {
   const [recipes, setRecipes] = useState(sampleData);
 
   const onSwipedRight = (index: number) => {
@@ -27,10 +43,11 @@ export default function SwipeScreen() {
         cards={recipes}
         renderCard={(card) => (
           <ImageBackground 
-          source={require('../../assets/images/bakedchicken.png')}            style={styles.card}
+            source={require('../../assets/images/bakedchicken.png')}
+            style={styles.card}
             imageStyle={styles.cardBackground}
           >
-         <Text style={styles.text}>{card.name}</Text>
+            <Text style={styles.text}>{card.name}</Text>
             <Text style={styles.text}>Prep Time: {card.prepTime}</Text>
           </ImageBackground>
         )}
@@ -43,9 +60,13 @@ export default function SwipeScreen() {
         disableTopSwipe={true}
         disableBottomSwipe={true}
       />
+      <Button
+        title="Add Recipe"
+        onPress={() => navigation.navigate('AddRecipe')}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -73,3 +94,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default SwipeScreen;
