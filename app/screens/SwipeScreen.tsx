@@ -7,7 +7,7 @@ const sampleData = [
   { name: 'Grilled Salmon', prepTime: '30 min', image: 'https://via.placeholder.com/150' },
   // Add more sample data here
 ];
-
+// i liked men during covid
 export default function SwipeScreen() {
   const [recipes, setRecipes] = useState(sampleData);
 
