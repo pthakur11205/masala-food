@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase'; 
+
 
 
 type RootStackParamList = {
@@ -25,21 +24,7 @@ const AddRecipe: React.FC<Props> = ({ navigation }) => {
   const [prepTime, setPrepTime] = useState('');
   const [image, setImage] = useState('');
 
-  const handleSave = async () => {
-    // Save the recipe to Firestore
-    try {
-      await setDoc(doc(db, 'recipes', name), {
-        name,
-        prepTime,
-        image,
-      });
-      alert('Recipe saved successfully');
-      navigation.goBack();
-    } catch (error) {
-      console.error('Error saving recipe: ', error);
-    }
-    console.log('Saving...')
-  };
+  
 
   return (
     <View style={styles.container}>
@@ -49,7 +34,7 @@ const AddRecipe: React.FC<Props> = ({ navigation }) => {
       <TextInput style={styles.input} value={prepTime} onChangeText={setPrepTime} />
       <Text style={styles.label}>Image URL</Text>
       <TextInput style={styles.input} value={image} onChangeText={setImage} />
-      <Button title="Save Recipe" onPress={handleSave} />
+      <Button title="Save Recipe" />
     </View>
   );
 };
