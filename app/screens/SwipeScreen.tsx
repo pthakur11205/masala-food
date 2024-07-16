@@ -18,14 +18,20 @@ type Props = {
   route: SwipeScreenRouteProp;
 };
 
-const sampleData = [
+type RecipeCard = {
+  name: string;
+  prepTime: string;
+  image: string;
+};
+
+const sampleData: RecipeCard[] = [
   { name: 'Oven-baked Chicken', prepTime: '20 min', image: 'https://via.placeholder.com/150' },
   { name: 'Grilled Salmon', prepTime: '30 min', image: 'https://via.placeholder.com/150' },
   // Add more sample data here
 ];
 
 const SwipeScreen: React.FC<Props> = ({ navigation }) => {
-  const [recipes, setRecipes] = useState(sampleData);
+  const [recipes, setRecipes] = useState<RecipeCard[]>(sampleData);
 
   const onSwipedRight = (index: number) => {
     // Add logic for saving/liking the recipe
@@ -41,7 +47,7 @@ const SwipeScreen: React.FC<Props> = ({ navigation }) => {
     <View style={styles.container}>
       <Swiper
         cards={recipes}
-        renderCard={(card) => (
+        renderCard={(card: RecipeCard) => (
           <ImageBackground 
             source={require('../../assets/images/bakedchicken.png')}
             style={styles.card}
@@ -53,7 +59,7 @@ const SwipeScreen: React.FC<Props> = ({ navigation }) => {
         )}
         onSwipedRight={onSwipedRight}
         onSwipedLeft={onSwipedLeft}
-        backgroundColor={'#E8AC3B'} //Orange
+        backgroundColor={'#E8AC3B'} // Orange
         cardIndex={0}
         stackSize={3}
         verticalSwipe={false}
@@ -71,7 +77,7 @@ const SwipeScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FA4643', //reddish
+    backgroundColor: '#FA4643', // Reddish
     justifyContent: 'center', // Center vertically
     alignItems: 'center', // Center horizontally
   },
